@@ -39,7 +39,7 @@ if [ -z "$date_exe" ] ; then
     exit 1
 fi
 
-folder_name=`$date_exe +"%Y-%b-%d_%H:%M:%S"`
+folder_name=`$date_exe +"%Y-%b-%d_%H.%M.%S"`
 folder_name=${folder_name}_$3
 mkdir -p ${OUTPUT}/${folder_name}
 
@@ -74,7 +74,6 @@ cp ${OUTPUT}/${STUDY_NAME}-subset1.bgl.r2 ${OUTPUT}/${STUDY_NAME}.bgl.r2
   for subset in $(seq 2 $SUBSETS)
     do
     Rscript $(dirname $0)/left_join_iteration.R ${OUTPUT}/${STUDY_NAME}.bgl.r2 ${OUTPUT}/${STUDY_NAME}-subset${subset}.bgl.r2
-    #Rscript myTools/snp2hla-p/left_join_iteration.R ${OUTPUT}/${STUDY_NAME}.bgl.r2 ${OUTPUT}/${STUDY_NAME}-subset${subset}.bgl.r2
     done
     
 # merge bed files
@@ -86,10 +85,9 @@ cp ${OUTPUT}/${STUDY_NAME}-subset1.bgl.r2 ${OUTPUT}/${STUDY_NAME}.bgl.r2
       echo "${OUTPUT}/${STUDY_NAME}-subset${subset}.bed ${OUTPUT}/${STUDY_NAME}-subset${subset}.bim ${OUTPUT}/${STUDY_NAME}-subset${subset}.fam" >> ${OUTPUT}/${STUDY_NAME}_bbf_files.txt
    done
 
-   #/home/mlibydt3/galaxy/tools/$PLINK --noweb --allow-no-sex --bfile ${OUTPUT}/${STUDY_NAME}-subset1 --merge-list ${OUTPUT}/${STUDY_NAME}_bbf_files.txt --make-bed --out ${OUTPUT}/${STUDY_NAME} --silent
    $PLINK --noweb --allow-no-sex --bfile ${OUTPUT}/${STUDY_NAME}-subset1 --merge-list ${OUTPUT}/${STUDY_NAME}_bbf_files.txt --make-bed --out ${OUTPUT}/${STUDY_NAME} --silent
 
-# dosage merge
+# dosage merge (without transposing)
 > ${OUTPUT}/${STUDY_NAME}_dosage_files.txt
 
    for subset in $(seq 1 $SUBSETS)
@@ -98,8 +96,9 @@ cp ${OUTPUT}/${STUDY_NAME}-subset1.bgl.r2 ${OUTPUT}/${STUDY_NAME}.bgl.r2
       echo "1 ${OUTPUT}/${STUDY_NAME}-subset${subset}.dosage ${OUTPUT}/${STUDY_NAME}-c${subset}.lst" >> ${OUTPUT}/${STUDY_NAME}_dosage_files.txt
    done
 
-# /home/mlibydt3/galaxy/tools/bin/plink --noweb --allow-no-sex --fam ${OUTPUT}/${STUDY_NAME}.fam --dosage ${OUTPUT}/${STUDY_NAME}_dosage_files.txt list format=1 sepheader --write-dosage --out ${OUTPUT}/${STUDY_NAME}_dosage_file
-$PLINK --noweb --allow-no-sex --fam ${OUTPUT}/${STUDY_NAME}.fam --dosage ${OUTPUT}/${STUDY_NAME}_dosage_files.txt list format=1 sepheader --write-dosage --out ${OUTPUT}/${STUDY_NAME}_dosage_file
+$PLINK --noweb --allow-no-sex --fam ${OUTPUT}/${STUDY_NAME}.fam --dosage ${OUTPUT}/${STUDY_NAME}_dosage_files.txt list format=1 sepheader --write-dosage --out ${OUTPUT}/${STUDY_NAME}
+# python script to merge and transpose the dosage file
+# python $(dirname $0)/snp2hla_formatter_trans.py --dosage ${OUTPUT}/${STUDY_NAME} --out ${OUTPUT}/${STUDY_NAME}
 
 # copy output to final directory
 cp ${OUTPUT}/${STUDY_NAME}* ${OUTPUT}/${folder_name}

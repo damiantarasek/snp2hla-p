@@ -21,23 +21,27 @@
   ln -s ${input_pbed.extra_files_path}/* snp2hla/data/input/ &&
 
   ## run the script
-  bash $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA.csh snp2hla/temp_output $subsets &&
-  
+  #if $subsets == 1
+  bash $__tool_directory__/snp2hla_galaxy_no_strat.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output
+  #else
+  bash $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output $subsets 
+  #end if
+  &&
   ## output files
   cp snp2hla/temp_output/${name}.bim "$output_bim" &&
   cp snp2hla/temp_output/${name}.bed "$output_bed" &&
   cp snp2hla/temp_output/${name}.fam "$output_fam" &&
   cp snp2hla/temp_output/${name}.bgl.r2 "$output_r2" &&
   cp snp2hla/temp_output/${name}.bgl.log "$output_log" &&
-  cp snp2hla/temp_output/${name}_dosage_file.out.dosage "$output_dosage"
-  
+  ## single subset script outputs file without "out", multiple subset script outputs with "out" in filename
+  cp snp2hla/temp_output/${name}.*dosage "$output_dosage" 
   ]]>
   </command>
   <inputs>      
     <param type="text" name="name" value = "test" label="Name for labelling output directory and files" help="(NAME)" />       
     <param type="integer" name="max_memory" value="10000" label="Maximum memory [MB]" help="Maximum memory in MB allowed for the process (max_memory)" />
     <param type="integer" name="window_size" value="2000" label="Beagle window size" help="Window size of reference markers" />
-    <param type="integer" name="subsets" value="2" label="Number of subsets" help="As a guidance, max 4000 samples per one subset" />
+    <param type="integer" name="subsets" value="1" label="Number of subsets" help="As a guidance, max 4000 samples per one subset. If a number of subsets equals to 1 then no subsetting occurs" />
     <!--<param type="hidden" name="ref_panel" value="snp2hla/data/REF/T1DGC_REF"/>-->
     <param type="data" name="input_pbed" format="pbed" label="pbed file" help="select 'Upload File' from top left tools menu, then click on 'Composite' tab, then upload bim, bed and fam files" />
   </inputs>
