@@ -9,7 +9,7 @@ STUDY_NAME=$3
 
 #cd /home/mlibydt3/galaxy/tools/
 
-# Set up directory paths - temp output to scratch
+# Set up directory paths - temp output to scratch 
 TEMP_OUTPUT_DIR=$8
 OUTPUT="$TEMP_OUTPUT_DIR"
 

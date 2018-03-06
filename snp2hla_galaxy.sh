@@ -11,7 +11,7 @@ STUDY_NAME=$3
 
 # Set up directory paths - temp output to scratch
 #STUDY_INPUT="snp2hla/data/input/${STUDY_NAME}"
-#STUDY_INPUT=$4
+#STUDY_INPUT=$4 
 TEMP_OUTPUT_DIR=$8
 #FINAL_OUTPUT_DIR='snp2hla/imputation/output/raw/'
 OUTPUT="$TEMP_OUTPUT_DIR"
