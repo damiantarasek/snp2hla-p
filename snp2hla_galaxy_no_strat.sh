@@ -32,9 +32,7 @@ mkdir -p ${OUTPUT}/${folder_name}
 $snp2hla ${OUT} ${REF_PANEL} ${OUTPUT}/${STUDY_NAME} $PLINK  $max_memory $window_size
 
 # transpose dosage file
-#Rscript $(dirname $0)/transpose_dosage.R ${OUTPUT}/${STUDY_NAME}.dosage ${OUTPUT}/${STUDY_NAME}.fam ${OUTPUT}/${STUDY_NAME}.out.dosage
-
-# python myTools/snp2hla/snp2hla_formatter_no_strat_trans.py --dosage ${OUTPUT}/${STUDY_NAME} --out ${OUTPUT}/${STUDY_NAME}_dosage_file
+Rscript $(dirname $0)/transpose_dosage.R ${OUTPUT}/${STUDY_NAME}.dosage ${OUTPUT}/${STUDY_NAME}.fam ${OUTPUT}/${STUDY_NAME}.out.dosage
 
 # copy output to final directory
-#cp ${OUTPUT}/${STUDY_NAME}* ${OUTPUT}/${folder_name}
+cp ${OUTPUT}/${STUDY_NAME}* ${OUTPUT}/${folder_name}
