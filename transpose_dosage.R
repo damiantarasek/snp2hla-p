@@ -1,6 +1,6 @@
 library(sampling)
 
-# deal with arguments
+# deal with arguments 
 args <- commandArgs(trailingOnly = TRUE)
 dosageFile <- args[1]
 famFile <- args[2]

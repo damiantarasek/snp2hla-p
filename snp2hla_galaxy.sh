@@ -9,7 +9,7 @@ STUDY_NAME=$3
 
 ##cd /home/mlibydt3/galaxy/tools/
 
-# Set up directory paths - temp output to scratch
+# Set up directory paths - temp output to scratch 
 #STUDY_INPUT="snp2hla/data/input/${STUDY_NAME}"
 #STUDY_INPUT=$4 
 TEMP_OUTPUT_DIR=$8

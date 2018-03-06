@@ -3,7 +3,7 @@
   <requirements>
     <requirement type="package" version="1.07">plink</requirement>
     <requirement type="package" version="1.0">snp2hla</requirement>
-    <requirement type="package" version="3.0.4">beagle</requirement>
+    <requirement type="package" version="3.0.4">beagle</requirement> 
     <requirement type="package" version="3.2.0">R</requirement> 
     <requirement type="package" version="2.8">r-sampling</requirement>
     <requirement type="package" version="1.1.1">r-readr</requirement>
