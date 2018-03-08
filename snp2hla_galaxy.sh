@@ -98,7 +98,7 @@ cp ${OUTPUT}/${STUDY_NAME}-subset1.bgl.r2 ${OUTPUT}/${STUDY_NAME}.bgl.r2
 
 $PLINK --noweb --allow-no-sex --fam ${OUTPUT}/${STUDY_NAME}.fam --dosage ${OUTPUT}/${STUDY_NAME}_dosage_files.txt list format=1 sepheader --write-dosage --out ${OUTPUT}/${STUDY_NAME}
 # transpose dosage file
-Rscript $(dirname $0)/transpose_dosage.R ${OUTPUT}/${STUDY_NAME}.dosage ${OUTPUT}/${STUDY_NAME}.fam ${OUTPUT}/${STUDY_NAME}.out.dosage
+Rscript $(dirname $0)/transpose_dosage.R ${OUTPUT}/${STUDY_NAME}.out.dosage ${OUTPUT}/${STUDY_NAME}.fam ${OUTPUT}/${STUDY_NAME}.out.dosage
 
 # copy output to final directory
 cp ${OUTPUT}/${STUDY_NAME}* ${OUTPUT}/${folder_name}

@@ -13,7 +13,7 @@ fam <- subset(fam, select = c('V1','V2'))
 colnames(fam) <- c('FID','IID')
 
 # read dosage file
-dos <- read.table(file = dosageFile, header = FALSE)
+dos <- read.table(file = dosageFile, skip = 1)
 dos <- dos [, -c(2:3)]
 trans_dos <- t(dos)
 #make first row header
