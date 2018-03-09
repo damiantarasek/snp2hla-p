@@ -1,7 +1,7 @@
 <tool id="snp2hla_2" name="SNP2HLA" version="1.0.0">
   <description> with sample stratification</description>
   <requirements>
-    <requirement type="package" version="1.07">plink</requirement>
+    <requirement type="package" version="1.90b5.3">plink</requirement>
     <requirement type="package" version="1.0">snp2hla</requirement>
     <requirement type="package" version="3.0.4">beagle</requirement> 
     <requirement type="package" version="3.2.0">R</requirement> 
