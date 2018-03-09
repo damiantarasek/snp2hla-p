@@ -22,9 +22,9 @@
 
   ## run the script
   #if $subsets == 1
-  bash $__tool_directory__/snp2hla_galaxy_no_strat.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA.csh snp2hla/temp_output
+  bash -e $__tool_directory__/snp2hla_galaxy_no_strat.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA.csh snp2hla/temp_output
   #else
-  bash $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output $subsets 
+  bash -e $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output $subsets 
   #end if
   &&
   ## output files
