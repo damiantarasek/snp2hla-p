@@ -22,9 +22,9 @@
 
   ## run the script
   #if $subsets == 1
-  bash -e $__tool_directory__/snp2hla_galaxy_no_strat.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA.csh snp2hla/temp_output
+  bash -e $__tool_directory__/snp2hla_galaxy_no_strat.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output ${QC.MAF} ${QC.R2}
   #else
-  bash -e $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output $subsets 
+  bash -e $__tool_directory__/snp2hla_galaxy.sh $max_memory $window_size $name snp2hla/data/input/RgeneticsData \$ref_panel/T1DGC_REF plink SNP2HLA-fast.csh snp2hla/temp_output $subsets ${QC.MAF} ${QC.R2}
   #end if
   &&
   ## output files
@@ -43,6 +43,22 @@
     <param type="integer" name="subsets" value="1" label="Number of subsets" help="As a guidance, max 4000 samples per one subset. If a number of subsets equals to 1 then no subsetting occurs" />
     <!--<param type="hidden" name="ref_panel" value="snp2hla/data/REF/T1DGC_REF"/>-->
     <param type="data" name="input_pbed" format="pbed" label="pbed file" help="select 'Upload File' from top left tools menu, then click on 'Composite' tab, then upload bim, bed and fam files" />
+    
+    <conditional name="QC">
+        <param name="qc_selector" type="select" label="OPTIONAL: Set quality control parameters: MAF - low allele frequency and R2 - correlation">
+          <option value="no_qc" selected="True">Don't set QC</option>
+          <option value="set_qc">Set QC</option>
+        </param>
+        <when value="no_qc">
+          <param name="MAF" type="hidden" value="0" />
+          <param name="R2" type="hidden" value="0" />
+        </when>
+        <when value="set_qc">
+          <param name="MAF" type="text" label="Set MAF" />
+          <param name="R2" type="text" label="Set R2" />
+        </when>
+      </conditional>
+      
   </inputs>
   <outputs>
     <data name="output_bim" format="tabular" label="SNP2HLA on ${on_string}: BIM file" />
