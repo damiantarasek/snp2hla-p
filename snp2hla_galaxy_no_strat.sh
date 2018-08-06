@@ -34,8 +34,8 @@ $snp2hla ${OUT} ${REF_PANEL} ${OUTPUT}/${STUDY_NAME} $PLINK  $max_memory $window
 # QC STEPS =======================================================================================================================================
 SNP_MAF_THRESH=$9
 R2=${10}
-echo $SNP_MAF_THRESH > /home/mlibydt3/galaxy/tools/snp2hla/temp_output/R2-test.txt
-echo ${R2} >> /home/mlibydt3/galaxy/tools/snp2hla/temp_output/R2-test.txt
+#echo $SNP_MAF_THRESH > /home/mlibydt3/galaxy/tools/snp2hla/temp_output/R2-test.txt
+#echo ${R2} >> /home/mlibydt3/galaxy/tools/snp2hla/temp_output/R2-test.txt
 
 #if [ "$SNP_MAF_THRESH" != -1 ] 
 #then
