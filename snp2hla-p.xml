@@ -62,7 +62,7 @@
   </inputs>
   <outputs>
     <data name="output_bim" format="tabular" label="SNP2HLA on ${on_string}: BIM file" />
-    <data name="output_bed" format="pbed" label="SNP2HLA on ${on_string}: PLINK BED file" />
+    <data name="output_bed" format="bed" label="SNP2HLA on ${on_string}: BED file" />
     <data name="output_fam" format="txt" label="SNP2HLA on ${on_string}: FAM file" />
     <data name="output_r2" format="tabular" label="SNP2HLA on ${on_string}: r2 file" />
     <data name="output_log" format="txt" label="SNP2HLA on ${on_string}: LOG file" />
